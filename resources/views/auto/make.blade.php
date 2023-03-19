@@ -8,9 +8,9 @@
             <!-- <a href= "{{ route('auto.make', ['id' => $auto->make]) }}"><li><?= $auto->make; ?></li></a> -->
             
             
-        <?php endforeach; ?>
-        <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>Закрыть
-                    </button>
-                </div>
+    <?php endforeach; ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>Закрыть
+        </button>
+    </div>

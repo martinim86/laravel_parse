@@ -12,9 +12,30 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <script type="text/javascript">
+        $(function() {
+           $('#datetimepicker').datetimepicker({
+    format: 'YYYY-MM-DD',
+
+});
+        });
+        $(function() {
+           $('#datetimepicker1').datetimepicker({
+    format: 'YYYY-MM-DD',
+
+});
+        });
+    </script>    
     <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
 </head>
 <body>
+    
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Мой блог</a>
@@ -35,45 +56,10 @@
                     <a class="nav-link" href="#">Контакты</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" name="search" type="search" placeholder="Поиск" aria-label="Поиск">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
-            </form>
         </div>
     </nav>
 
-    <h1>Все посты блога</h1>
-    <ul>
-        <?php foreach ($posts as $post): ?>
-            <li><?= $post->title; ?></li>
-        <?php endforeach; ?>
-    </ul>
-    <h1>Все auto блога</h1>
-    <ul>
-        <?php foreach ($autos as $auto): ?>
-            <a id = "btnSubmit" data-attr="{{ route('auto.make',['id' => $auto->make]) }}" href= "{{ route('auto.make', ['id' => $auto->make]) }}"><li><?= $auto->make; ?></li></a>
-            <!-- <input data-attr="{{ route('auto.make',['id' => $auto->make]) }}" id = "btnSubmit" type="submit" value="Make"/> -->
-            <!-- <img src="{{ asset('img/'.$auto->image) }}" alt="" class="img-fluid"> -->
-        <?php endforeach; ?>
-    </ul>
-    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="mediumBody">
-                    <div>
-                        <!-- the result to be displayed apply here -->
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @yield('content')
     
 </div>
 

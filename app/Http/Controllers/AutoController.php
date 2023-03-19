@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Auto;
 use Carbon\Carbon;
-
-class PostController extends Controller
+use Illuminate\Support\Facades\DB;
+class AutoController extends Controller
 {
     public function index() {
         // $arrDir = scandir('E:\programs\xamp\htdocs\recurly\test_task'); # где /home/ это путь к папке
@@ -46,8 +46,30 @@ class PostController extends Controller
         
         return view('auto.make', [ 'autos' => $autos]);
     }
-    
     public function stat(Request $request) {
-        return view('auto.stat');
+        // SELECT `make`, sum(count) FROM `autos` GROUP BY `make`;
+        $autos = Auto::select('make')->groupBy('make')->get();
+        // $autos_group_model = DB::table('autos')
+        // ->select('make', 'model',DB::raw('SUM(count) as total_field_name'))
+        // ->groupBy('make', 'model')
+        // ->get();
+        // $auto_dates = Auto::all();
+        $auto_dates = 0;
+        $autos_group_model = 0;
+        if ($request->isMethod('post')) {
+            if($request->has('camera_video')){
+                $auto_dates = Auto::
+                whereIn('make',$request->input('camera_video'))
+                ->whereBetween('year', [$request->input('from'), $request->input('to')]) 
+                ->get();
+                $autos_group_model = DB::table('autos')
+                ->select('make', 'model',DB::raw('SUM(count) as total_field_name'))
+                ->whereIn('make',$request->input('camera_video'))
+                ->whereBetween('year', [$request->input('from'), $request->input('to')]) 
+                ->groupBy('make', 'model')
+                ->get();
+            } 
+        }
+        return view('auto.stat', [ 'autos' => $autos,  'auto_dates' => $auto_dates,  'autos_group_model' => $autos_group_model]);
     }
 }

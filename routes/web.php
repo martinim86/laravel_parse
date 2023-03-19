@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\AutoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +16,8 @@ use App\Http\Controllers\PostController;
 // Route::get('/', function () {
 //     return 'Hello World';
 // });
-Route::get('/', [ PostController::class, 'index' ]);
-Route::get('auto/make/{id}', [ PostController::class, 'makes' ])->name('auto.make');
-Route::get('auto/count/{id}/{id2}', [ PostController::class, 'count' ])->name('auto.count');
+Route::get('/', [ AutoController::class, 'index' ]);
+Route::get('auto/make/{id}', [ AutoController::class, 'makes' ])->name('auto.make');
+Route::get('auto/count/{id}/{id2}', [ AutoController::class, 'count' ])->name('auto.count');
+Route::get('auto/stat/', [ AutoController::class, 'stat' ])->name('auto.stat');
+Route::post('auto/stat/', [ AutoController::class, 'stat' ])->name('auto.filter');
