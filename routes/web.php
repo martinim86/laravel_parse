@@ -16,7 +16,7 @@ use App\Http\Controllers\AutoController;
 // Route::get('/', function () {
 //     return 'Hello World';
 // });
-Route::get('/', [ AutoController::class, 'index' ]);
+Route::get('/', [ AutoController::class, 'index' ])->name('index');
 Route::get('auto/make/{id}', [ AutoController::class, 'makes' ])->name('auto.make');
 Route::get('auto/count/{id}/{id2}', [ AutoController::class, 'count' ])->name('auto.count');
 Route::get('auto/stat/', [ AutoController::class, 'stat' ])->name('auto.stat');

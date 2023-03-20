@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-sm-4">
         <h3 class="mb-4">Выберите модель</h3>
-        <form action="{{ route('auto.filter') }}" method="POST" class="d-none">
+        <form action="{{ route('auto.filter') }}" method="POST" >
             @csrf
 
             <ul>
